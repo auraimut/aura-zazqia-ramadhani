@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <title>Operator Tabungan JavaScript Aura</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+        body{
+            margin:0;
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background: linear-gradient(135deg, #fffbea, #ffe4f0, #fde68a, #fbcfe8);
+            font-family:'Poppins', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card{
+            background: rgba(255,255,255,0.7);
+            padding:30px;
+            width:420px;
+            border-radius:20px;
+            backdrop-filter: blur(12px);
+            box-shadow:0 10px 30px rgba(255,182,193,0.3);
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        h2{
+            color:#9d174d;
+            margin-bottom: 15px;
+        }
+
+        .result{
+            margin-top:15px;
+            padding:15px;
+            background: rgba(255,240,245,0.6);
+            border-radius:12px;
+            line-height:1.7;
+            color:#7a284f;
+            text-align:left;
+        }
+
+        /* Tombol kembali */
+        .back-btn{
+            display:block;
+            margin:20px auto 0;
+            width:220px;
+            text-align:center;
+            background: linear-gradient(135deg, #fde68a, #fbcfe8);
+            color:#7a284f;
+            padding:12px;
+            border-radius:25px;
+            text-decoration:none;
+            font-weight:500;
+            transition:0.3s;
+            box-shadow:0 5px 15px rgba(255,182,193,0.4);
+        }
+
+        .back-btn:hover{
+            background: linear-gradient(135deg, #facc15, #f472b6);
+            transform: scale(1.05);
+        }
+
+        /* Background ramai */
+        body::before{
+            content:"";
+            position:fixed;
+            width:200%;
+            height:200%;
+            background: radial-gradient(circle, rgba(250,204,21,0.2) 2px, transparent 2px),
+                        radial-gradient(circle, rgba(244,114,182,0.2) 2px, transparent 2px);
+            background-size:40px 40px, 60px 60px;
+            animation:moveBg 20s linear infinite;
+            z-index:-2;
+        }
+
+        body::after{
+            content:"";
+            position:fixed;
+            width:200%;
+            height:200%;
+            background: radial-gradient(circle at 30% 30%, rgba(253,224,71,0.3), transparent),
+                        radial-gradient(circle at 70% 70%, rgba(244,114,182,0.3), transparent);
+            animation:glowMove 15s infinite alternate;
+            z-index:-3;
+        }
+
+        @keyframes moveBg{
+            from{ transform:translate(0,0); }
+            to{ transform:translate(-40px,-40px); }
+        }
+
+        @keyframes glowMove{
+            from{ transform:translate(0,0); }
+            to{ transform:translate(-40px,40px); }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Operator Tabungan</h2>
+    <div class="result">
+        <script>
+            let nilai = Number(prompt("Masukkan nilai awal variabel:"));
+
+            document.write("Nilai awal = " + nilai + "<br>");
+            nilai += 11;
+            document.write("Nilai += 11 → " + nilai + "<br>");
+            nilai -= 4;
+            document.write("Nilai -= 4 → " + nilai + "<br>");
+            nilai *= 3;
+            document.write("Nilai *= 3 → " + nilai + "<br>");
+            nilai /= 5;
+            document.write("Nilai /= 5 → " + nilai + "<br>");
+            nilai **= 3;
+            document.write("Nilai **= 3 → " + nilai + "<br>");
+            nilai %= 6;
+            document.write("Nilai %= 6 → " + nilai + "<br>");
+        </script>
+    </div>
+
+    <!-- Tombol kembali -->
+    <a href="indexx.html" class="back-btn">⬅ Kembali ke Menu Utama</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Percabangan JavaScript Aura</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+        *{ box-sizing:border-box; }
+
+        body{
+            margin:0;
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(135deg,#fffbea,#ffe4f0,#fde68a,#fbcfe8);
+            font-family:'Poppins', sans-serif;
+            position:relative;
+            overflow:hidden;
+        }
+
+        .card{
+            background:rgba(255,255,255,0.7);
+            width:420px;
+            padding:30px;
+            border-radius:20px;
+            backdrop-filter:blur(12px);
+            box-shadow:0 10px 30px rgba(255,182,193,0.3);
+            animation:fadeIn 1s ease;
+            z-index:1;
+        }
+
+        h2{
+            text-align:center;
+            color:#9d174d;
+            margin-bottom:20px;
+        }
+
+        label{
+            font-size:14px;
+            color:#7a284f;
+            font-weight:500;
+        }
+
+        input{
+            width:100%;
+            padding:12px;
+            margin:6px 0 12px;
+            border-radius:12px;
+            border:1px solid #fbcfe8;
+            font-size:14px;
+            transition:0.3s;
+        }
+
+        input:focus{
+            outline:none;
+            border-color:#f472b6;
+            box-shadow:0 0 8px rgba(244,114,182,0.3);
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            border:none;
+            border-radius:12px;
+            background:linear-gradient(135deg,#fde68a,#fbcfe8);
+            font-size:15px;
+            cursor:pointer;
+            transition:0.3s;
+            color:#7a284f;
+            font-weight:500;
+        }
+
+        button:hover{
+            background:linear-gradient(135deg,#facc15,#f472b6);
+            transform:scale(1.03);
+        }
+
+        .error{
+            color:#dc2626;
+            text-align:center;
+            margin-top:10px;
+        }
+
+        /* STRUK */
+        .result{
+            background:#fff;
+            padding:15px;
+            border-radius:12px;
+            margin-top:15px;
+            font-size:14px;
+            border:2px dashed #fbcfe8;
+            line-height:1.7;
+        }
+
+        .result h3{
+            text-align:center;
+            margin-bottom:10px;
+            color:#9d174d;
+        }
+
+        .line{
+            display:flex;
+            justify-content:space-between;
+        }
+
+        .total{
+            margin-top:10px;
+            padding-top:10px;
+            border-top:1px dashed #ccc;
+            font-weight:bold;
+        }
+
+        .hidden{ display:none; }
+
+        /* tombol kembali */
+        .back-btn{
+            display:block;
+            margin:20px auto 0;
+            width:220px;
+            text-align:center;
+            background:linear-gradient(135deg,#fde68a,#fbcfe8);
+            color:#7a284f;
+            padding:12px;
+            border-radius:25px;
+            text-decoration:none;
+            font-weight:500;
+            transition:0.3s;
+            box-shadow:0 5px 15px rgba(255,182,193,0.4);
+        }
+
+        .back-btn:hover{
+            background:linear-gradient(135deg,#facc15,#f472b6);
+            transform:scale(1.05);
+        }
+
+        /* background animasi */
+        body::before{
+            content:"";
+            position:fixed;
+            width:200%;
+            height:200%;
+            background:radial-gradient(circle, rgba(250,204,21,0.2) 2px, transparent 2px),
+                       radial-gradient(circle, rgba(244,114,182,0.2) 2px, transparent 2px);
+            background-size:40px 40px,60px 60px;
+            animation:moveBg 20s linear infinite;
+            z-index:-2;
+        }
+
+        @keyframes moveBg{
+            from{transform:translate(0,0);}
+            to{transform:translate(-40px,-40px);}
+        }
+
+        @keyframes fadeIn{
+            from{opacity:0; transform:translateY(20px);}
+            to{opacity:1; transform:translateY(0);}
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <!-- LOGIN -->
+    <div id="loginForm">
+        <h2>Login</h2>
+
+        <label>Username "kasir aura"</label>
+        <input type="text" id="username" placeholder="Masukkan username">
+
+        <label>Password "12345"</label>
+        <input type="password" id="password" placeholder="Masukkan password">
+
+        <button onclick="login()">Login</button>
+        <p id="pesan" class="error"></p>
+    </div>
+
+    <!-- DISKON -->
+    <div id="bayarForm" class="hidden">
+        <h2>Hitung Diskon</h2>
+        <input type="number" id="tb" placeholder="Masukkan Total Bayar">
+        <button onclick="hitung()">Hitung</button>
+
+        <div id="hasil" class="result"></div>
+    </div>
+
+    <!-- tombol kembali -->
+    <a href="indexx.html" class="back-btn">⬅ Kembali ke Menu Utama</a>
+
+</div>
+
+<script>
+    let usernameBenar = "kasir aura";
+    let passwordBenar = "12345";
+
+    function login(){
+        let user = document.getElementById("username").value;
+        let pass = document.getElementById("password").value;
+        let pesan = document.getElementById("pesan");
+
+        pesan.innerHTML = "";
+
+        if(user !== usernameBenar){
+            pesan.innerHTML = "Username salah!";
+        } 
+        else if(pass !== passwordBenar){
+            pesan.innerHTML = "Password salah!";
+        } 
+        else {
+            document.getElementById("loginForm").classList.add("hidden");
+            document.getElementById("bayarForm").classList.remove("hidden");
+        }
+    }
+
+    function hitung(){
+        let tb = Number(document.getElementById("tb").value);
+        let diskon = 0;
+
+        if(tb >= 1000000){
+            diskon = tb * 0.20;
+        } else if(tb >= 850000){
+            diskon = tb * 0.15;
+        } else if(tb >= 750000){
+            diskon = tb * 0.10;
+        } else if(tb >= 500000){
+            diskon = tb * 0.05;
+        }
+
+        let totalBayar = tb - diskon;
+
+        document.getElementById("hasil").innerHTML =
+        `
+        <h3>STRUK PEMBELIAN</h3>
+        <div class="line"><span>Total Bayar</span><span>Rp ${tb}</span></div>
+        <div class="line"><span>Diskon</span><span>- Rp ${diskon}</span></div>
+        <div class="total line"><span>Total Akhir</span><span>Rp ${totalBayar}</span></div>
+        `;
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Perulangan JavaScript Aura</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fffbea, #ffe4f0, #fde68a, #fbcfe8);
+            text-align: center;
+            padding: 40px;
+            color: #444;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container {
+            background: rgba(255,255,255,0.7);
+            padding: 30px;
+            border-radius: 20px;
+            width: 400px;
+            margin: auto;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(255,182,193,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+            color: #9d174d;
+        }
+
+        p {
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #7a284f;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(255,182,193,0.4);
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        /* tombol warna pastel */
+        .btn-for { background: linear-gradient(135deg, #fde68a, #fbcfe8); color: #7a284f; }
+        .btn-dowhile { background: linear-gradient(135deg, #fbcfe8, #fde68a); color: #7a284f; }
+        .btn-foreach { background: linear-gradient(135deg, #facc15, #f472b6); color: #fff; }
+        .btn-nested { background: linear-gradient(135deg, #ffe4e6, #fde68a); color: #7a284f; }
+
+        #output {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255,240,245,0.6);
+            border-radius: 12px;
+            min-height: 80px;
+            text-align: left;
+            font-size: 14px;
+            color: #7a284f;
+        }
+
+        /* tombol kembali */
+        .back-btn {
+            display: block;
+            width: 220px;
+            margin: 25px auto 0;
+            text-align: center;
+            background: linear-gradient(135deg, #fde68a, #fbcfe8);
+            color: #7a284f;
+            padding: 12px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(255,182,193,0.4);
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(135deg, #facc15, #f472b6);
+            transform: scale(1.05);
+        }
+
+        /* background animasi */
+        body::before {
+            content: "";
+            position: fixed;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(250,204,21,0.2) 2px, transparent 2px),
+                        radial-gradient(circle, rgba(244,114,182,0.2) 2px, transparent 2px);
+            background-size: 40px 40px, 60px 60px;
+            animation: moveBg 20s linear infinite;
+            z-index: -2;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(253,224,71,0.3), transparent),
+                        radial-gradient(circle at 70% 70%, rgba(244,114,182,0.3), transparent);
+            animation: glowMove 15s infinite alternate;
+            z-index: -3;
+        }
+
+        @keyframes moveBg {
+            from { transform: translate(0,0); }
+            to { transform: translate(-40px, -40px); }
+        }
+
+        @keyframes glowMove {
+            from { transform: translate(0,0); }
+            to { transform: translate(-40px, 40px); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Perulangan JavaScript</h2>
+        <p>Pilih tombol di bawah untuk melihat cara kerja berbagai perulangan!</p>
+
+        <button class="btn-for" onclick="loopFor()">Perulangan FOR</button>
+        <button class="btn-dowhile" onclick="loopDoWhile()">Perulangan DO WHILE</button>
+        <button class="btn-foreach" onclick="loopForEach()">Perulangan FOREACH</button>
+        <button class="btn-nested" onclick="loopNested()">Perulangan NESTED</button>
+
+        <div id="output">Hasil akan muncul di sini...</div>
+
+        <!-- tombol kembali -->
+        <a href="indexx.html" class="back-btn">⬅ Kembali ke Menu Utama</a>
+    </div>
+
+    <script>
+        function loopFor() {
+            let hasil = "<b>Perulangan FOR:</b><br>";
+            for (let i = 1; i <= 5; i++) {
+                hasil += "Hari ke-" + i + "<br>";
+            }
+            document.getElementById("output").innerHTML = hasil;
+        }
+
+        function loopDoWhile() {
+            let hasil = "<b>Perulangan DO WHILE:</b><br>";
+            let i = 1;
+
+            do {
+                hasil += "Bulan ke-" + i + "<br>";
+                i++;
+            } while (i <= 5);
+
+            document.getElementById("output").innerHTML = hasil;
+        }
+
+        function loopForEach() {
+            let buah = ["Apel", "Pisang", "Anggur", "Semangka"];
+            let hasil = "<b>Perulangan FOREACH:</b><br>";
+
+            buah.forEach(function(item, index) {
+                hasil += (index + 1) + ". " + item + "<br>";
+            });
+
+            document.getElementById("output").innerHTML = hasil;
+        }
+
+        function loopNested() {
+            let hasil = "<b>Perulangan NESTED (Bersarang):</b><br>";
+
+            for (let i = 1; i <= 3; i++) {
+                for (let j = 1; j <= 3; j++) {
+                    hasil += "(" + i + "," + j + ") ";
+                }
+                hasil += "<br>";
+            }
+
+            document.getElementById("output").innerHTML = hasil;
+        }
+    </script>
+
+</body>
+</html>

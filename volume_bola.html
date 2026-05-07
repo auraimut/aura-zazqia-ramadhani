@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Volume Bola</title>
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* background kuning pastel hidup */
+  background: linear-gradient(135deg, #fff8dc, #fde68a);
+  overflow: hidden;
+}
+
+/* awan transparan */
+body::before, body::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.5) 80px, transparent 81px);
+  background-size: 300px 200px;
+  animation: awan 60s linear infinite;
+  z-index: 0;
+}
+
+body::after {
+  animation-duration: 90s;
+  opacity: 0.5;
+}
+
+@keyframes awan {
+  from { transform: translateX(0); }
+  to { transform: translateX(-300px); }
+}
+
+/* card */
+.card {
+  position: relative;
+  z-index: 1;
+
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.75);
+  padding: 30px;
+  border-radius: 25px;
+  width: 350px;
+  text-align: center;
+
+  box-shadow: 0 10px 30px rgba(202,138,4,0.2);
+  border: 1px solid rgba(255,255,255,0.5);
+
+  animation: muncul 0.7s ease;
+}
+
+/* animasi masuk */
+@keyframes muncul {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+h2 {
+  color: #92400e;
+  margin-bottom: 15px;
+}
+
+/* hasil */
+.hasil {
+  background: rgba(255,255,255,0.85);
+  padding: 15px;
+  border-radius: 15px;
+  color: #78350f;
+  line-height: 1.6;
+
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* label */
+.label {
+  font-weight: bold;
+  color: #b45309;
+}
+
+/* garis bawah */
+.hasil span {
+  position: relative;
+}
+
+.hasil span::after {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: #facc15;
+  margin-top: 3px;
+}
+
+/* tombol kembali */
+.back-btn {
+  display: block;
+  margin-top: 20px;
+  padding: 12px;
+  text-decoration: none;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #fde68a, #fbcfe8);
+  color: #7a284f;
+  font-weight: 500;
+  transition: 0.3s;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.back-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #facc15, #f472b6);
+}
+</style>
+
+<body>
+
+<div class="card">
+  <h2>Volume Bola</h2>
+  <div id="hasil" class="hasil"></div>
+
+  <!-- tombol kembali -->
+  <a href="index_bangunruang.html" class="back-btn">⬅ Kembali ke Halaman Utama</a>
+</div>
+
+<script>
+let r = prompt("Masukkan jari-jari:");
+
+let rumus = "(4/3) × π × r³";
+let hasil = (4/3) * Math.PI * r * r * r;
+
+document.getElementById("hasil").innerHTML =
+  "<span class='label'>Rumus:</span><br>" + rumus + "<br><br>" +
+  "<span class='label'>Substitusi:</span><br>(4/3) × π × " + r + "³<br><br>" +
+  "<span class='label'>Hasil:</span><br>" + hasil.toFixed(2);
+</script>
+
+</body>
+</html>

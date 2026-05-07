@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Materi JavaScript Aura</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    position: relative;
+    background: linear-gradient(135deg, #fffbea, #ffe4f0, #fde68a, #e9d5ff);
+}
+
+/* ===== LAYER AWAN (DEPTH) ===== */
+.cloud-layer {
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+/* awan jauh (blur) */
+.cloud1 {
+    background:
+        radial-gradient(circle, rgba(255,255,255,0.3) 60px, transparent 70px),
+        radial-gradient(circle, rgba(255,255,255,0.25) 50px, transparent 60px);
+    background-size: 300px 200px;
+    animation: moveSlow 80s linear infinite;
+    filter: blur(2px);
+}
+
+/* awan tengah */
+.cloud2 {
+    background:
+        radial-gradient(circle, rgba(255,255,255,0.4) 50px, transparent 60px),
+        radial-gradient(circle, rgba(255,255,255,0.3) 40px, transparent 50px);
+    background-size: 250px 180px;
+    animation: moveMedium 60s linear infinite;
+}
+
+/* awan dekat */
+.cloud3 {
+    background:
+        radial-gradient(circle, rgba(255,255,255,0.6) 40px, transparent 50px),
+        radial-gradient(circle, rgba(255,255,255,0.5) 35px, transparent 45px);
+    background-size: 200px 150px;
+    animation: moveFast 40s linear infinite;
+}
+
+/* ===== ANIMASI PARALLAX ===== */
+@keyframes moveSlow {
+    from { transform: translate(0,0); }
+    to { transform: translate(-200px, -100px); }
+}
+
+@keyframes moveMedium {
+    from { transform: translate(0,0); }
+    to { transform: translate(250px, -120px); }
+}
+
+@keyframes moveFast {
+    from { transform: translate(0,0); }
+    to { transform: translate(-300px, -150px); }
+}
+
+/* ===== JUDUL ===== */
+h1 {
+    text-align: center;
+    color: #831843;
+    margin-top: 40px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    animation: fadeDown 1s ease;
+}
+
+/* ===== LIST ===== */
+ul {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 50px auto;
+}
+
+li {
+    margin: 18px 0;
+    position: relative;
+    animation: fadeUp 0.8s ease;
+}
+
+/* ===== CARD ===== */
+a {
+    display: block;
+    text-decoration: none;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(12px);
+    color: #7a284f;
+    padding: 18px 24px;
+    border-radius: 20px;
+    transition: 0.4s;
+    box-shadow: 0 10px 20px rgba(255,182,193,0.3);
+}
+
+/* hover glow */
+a:hover {
+    transform: translateY(-8px) scale(1.05);
+    background: linear-gradient(135deg, #fde68a, #fbcfe8, #e9d5ff);
+    box-shadow: 0 15px 35px rgba(255,120,150,0.5);
+}
+
+/* ===== NODE ===== */
+li::before {
+    content: "";
+    position: absolute;
+    left: -35px;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    background: linear-gradient(#facc15, #f472b6, #c084fc);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+/* ===== ANIMASI ===== */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- layer awan -->
+<div class="cloud-layer cloud1"></div>
+<div class="cloud-layer cloud2"></div>
+<div class="cloud-layer cloud3"></div>
+
+<h1>Daftar Materi JavaScript</h1>
+
+<ul>
+    <li><a href="fungsioutputjava.html">1. Fungsi Output JavaScript</a></li>
+    <li><a href="variabeldantipedata.html">2. Variabel dan Tipe Data</a></li>
+    <li><a href="jendeladialog.html">3. Jendela Dialog Input</a></li>
+    <li><a href="operator.html">4. Operator</a></li>
+    <li><a href="percabangan.html">5. Percabangan</a></li>
+    <li><a href="perulangan.html">6. Perulangan</a></li>
+    <li><a href="array.html">7. Struktur Data Array</a></li>
+    <li><a href="bangunruang.html">8. Fungsi JavaScript</a></li>
+</ul>
+
+<script>
+/* ✨ efek mouse (parallax ringan) */
+document.addEventListener("mousemove", (e) => {
+    let x = e.clientX / window.innerWidth;
+    let y = e.clientY / window.innerHeight;
+
+    document.querySelectorAll(".cloud-layer").forEach((layer, i) => {
+        let speed = (i + 1) * 10;
+        layer.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+    });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Variabel Data JavaScript Aura</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(135deg, #fffbea, #ffe4f0, #fde68a, #fbcfe8);
+            margin: 0;
+            padding: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: rgba(255,255,255,0.7);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.3);
+            border: 2px solid rgba(255,255,255,0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            text-align: center;
+            color: #9d174d;
+            margin-bottom: 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 240, 245, 0.7);
+            border-radius: 12px;
+            overflow: hidden;
+            font-size: 16px;
+        }
+
+        table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid rgba(255,182,193,0.3);
+            vertical-align: top;
+        }
+
+        table tr:last-child td {
+            border-bottom: none;
+        }
+
+        table td:first-child {
+            font-weight: 600;
+            color: #7a284f;
+            width: 28%;
+        }
+
+        .welcome-text, .stay-text {
+            margin-left: 30px;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #7a284f;
+        }
+
+        /* Background ramai */
+        body::before {
+            content: "";
+            position: fixed;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(250,204,21,0.2) 2px, transparent 2px),
+                        radial-gradient(circle, rgba(244,114,182,0.2) 2px, transparent 2px);
+            background-size: 45px 45px, 60px 60px;
+            animation: moveBg 20s linear infinite;
+            z-index: -2;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(253,224,71,0.3), transparent),
+                        radial-gradient(circle at 70% 70%, rgba(244,114,182,0.3), transparent);
+            animation: glowMove 15s infinite alternate;
+            z-index: -3;
+        }
+
+        @keyframes moveBg {
+            from { transform: translate(0,0); }
+            to { transform: translate(-40px, -40px); }
+        }
+
+        @keyframes glowMove {
+            from { transform: translate(0,0); }
+            to { transform: translate(-40px, 40px); }
+        }
+
+        /* Tombol kembali */
+        .back-btn {
+            display: block;
+            width: 240px;
+            margin: 25px auto 0;
+            text-align: center;
+            background: linear-gradient(135deg, #fde68a, #fbcfe8);
+            color: #7a284f;
+            padding: 12px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 182, 193, 0.4);
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(135deg, #facc15, #f472b6);
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>DATA SEKOLAH SMK N 1 PURWOKERTO</h1>
+
+    <table>
+        <tbody id="output"></tbody>
+    </table>
+
+    <!-- Tombol kembali -->
+    <a href="indexx.html" class="back-btn">⬅ Kembali ke Menu Utama</a>
+</div>
+
+<script>
+    var name = "SMK NEGERI 1 PURWOKERTO";
+    var alamat = "Jl. DR. Soeparno No.29, Purwokerto Wetan, Kec. Purwokerto Tim., Kabupaten Banyumas, Jawa Tengah 53123"
+    var jurusan = "Akuntansi dan Keuangan Lembaga, Manajemen Perkantoran dan Layanan Bisnis, Pemasaran, Teknologi Farmasi, Desain Komunikasi Visual, Teknik Jaringan Komputer dan Telekomunikasi, Pengembangan Perangkat Lunak dan Gim"
+    var jumlah_siswa = "2.128"
+    var alamat_website = "https://smkn1purwokerto.sch.id/"
+    var jumlah_guru = "145"
+    var nama_ekstrakulikuler = "Paskibra, Pramuka, PMR, KAPA N, PIK-R, Musik, Teater, Mata Lensa, Seni Tari, PPA, Basket, Batminton, Futsal, Handball, Voly, MP, SKS, PKS, Panahan, Rohis, Rohkriskat, Bahasa Jepang, Bahasa Mandarin"
+    var fasilitas = "Lapangan bola, Lapangan basket, Masjid, LAB Program keahlian, Lab IPAS, Toilet, Ruang kelas, Kantin, Tempat Fotocopy, Perpustakaan, Taman, Gazebo, Parkiran, Komputer & PC tiap Lab, Sekre untuk ekstrakulikuler dan masih banyak lainnya."
+    var jumlah_tenaga_pendidik = "20"
+    var kepala_sekolah = "Drs. Witoto"
+    var kapro = "Ichsan Romdona, S.Pd (TJKT), Widiastuti, S. S.Pd (MPLB), Menik Mugiwati, S.Pd. MM (PM), Eva Nurvaizah, S.Kom (PPLG), Alifah Purnami, S.E (AKL), apt. Titis Arum Ika Yuniastuti, S.Farm (Farmasi), Titi Endri Astuti, S.Kom (DKV)"
+    var wali_kelas = "Dwi Prastanti Fajriatun, S.Pd"
+    var guru_wali = "Seno Nugroho, S.Kom"
+    var visitorCount = 50322;
+    var isActive = true;
+    var url = "https://www.petanikode.com";
+
+    alert("Selamat datang di " + name);
+
+    let output = `
+        <tr><td>Nama Situs</td><td>${name}</td></tr>
+        <tr><td>Jumlah Siswa</td><td>${jumlah_siswa}</td></tr>
+        <tr><td>Status Aktif</td><td>${isActive}</td></tr>
+        <tr><td>Alamat Sekolah</td><td>${alamat}</td></tr>
+        <tr><td>Jurusan</td><td>${jurusan}</td></tr>
+        <tr><td>Jumlah Guru</td><td>${jumlah_guru}</td></tr>
+        <tr><td>Ekstrakurikuler</td><td>${nama_ekstrakulikuler}</td></tr>
+        <tr><td>Fasilitas</td><td>${fasilitas}</td></tr>
+        <tr><td>Tenaga Kependidikan (TU)</td><td>${jumlah_tenaga_pendidik}</td></tr>
+        <tr><td>Kepala Sekolah</td><td>${kepala_sekolah}</td></tr>
+        <tr><td>Kapro</td><td>${kapro}</td></tr>
+        <tr><td>Wali Kelas</td><td>${wali_kelas}</td></tr>
+        <tr><td>Guru Wali</td><td>${guru_wali}</td></tr>
+    `;
+
+    document.getElementById("output").innerHTML = output;
+
+    var nama = prompt("Karena kamu memilih ke SMK N 1 Purwokerto, maka sebutkan namamu!", "");
+    document.write("<p class='welcome-text'>Selamat Datang " + nama + " di SMK N 1 Purwokerto</p>");
+
+    var yakin = confirm("Apakah kamu akan menuju ke website sekolah saya?");
+
+    if (yakin) {
+        window.location = "https://smkn1purwokerto.sch.id/";
+    } else {
+        document.write("<p class='stay-text'>Baiklah, tetap di sini saja ya!.</p>");
+    }
+</script>
+
+</body>
+</html>

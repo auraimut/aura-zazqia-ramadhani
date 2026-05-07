@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Array JavaScript Aura</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+
+            background: linear-gradient(135deg, #fffbea, #ffe4f0, #fde68a, #fbcfe8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* background animasi */
+        body::before {
+            content: "";
+            position: fixed;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(250,204,21,0.2) 2px, transparent 2px),
+                        radial-gradient(circle, rgba(244,114,182,0.2) 2px, transparent 2px);
+            background-size: 40px 40px, 60px 60px;
+            animation: moveBg 20s linear infinite;
+            z-index: -2;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 30%, rgba(253,224,71,0.3), transparent),
+                        radial-gradient(circle at 70% 70%, rgba(244,114,182,0.3), transparent);
+            animation: glowMove 15s infinite alternate;
+            z-index: -3;
+        }
+
+        .container {
+            width: 420px;
+            background: rgba(255,255,255,0.75);
+            padding: 25px;
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(255,182,193,0.3);
+            overflow-y: auto;
+            max-height: 85vh;
+        }
+
+        h3 {
+            color: #9d174d;
+            margin-top: 15px;
+        }
+
+        ol {
+            padding-left: 20px;
+            color: #7a284f;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+
+        /* tombol kembali */
+        .back-btn {
+            display: block;
+            width: 220px;
+            margin: 20px auto 0;
+            text-align: center;
+
+            background: linear-gradient(135deg, #fde68a, #fbcfe8);
+            color: #7a284f;
+
+            padding: 12px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(255,182,193,0.4);
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(135deg, #facc15, #f472b6);
+            transform: scale(1.05);
+        }
+
+        @keyframes moveBg {
+            from { transform: translate(0,0); }
+            to { transform: translate(-40px, -40px); }
+        }
+
+        @keyframes glowMove {
+            from { transform: translate(0,0); }
+            to { transform: translate(-40px, 40px); }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container" id="output"></div>
+
+<!-- tombol kembali -->
+<a href="indexx.html" class="back-btn">⬅ Kembali ke Menu Utama</a>
+
+<script>
+let hasil = "";
+
+// Array awal
+let sekolah = ["SD", "SMP", "SMK", "UNIVERSITAS"];
+
+hasil += "<h3>Nama Sekolah Saya:</h3><ol>";
+sekolah.forEach(item => {
+    hasil += "<li>" + item + "</li>";
+});
+hasil += "</ol>";
+
+// Diubah
+sekolah[0] = "SD N 2 Kedungrandu";
+sekolah[1] = "SMP N 2 Patikraja";
+sekolah[2] = "SMK N 1 Purwokerto";
+sekolah[3] = "Universitas DIPONEGORO";
+
+hasil += "<h3>Setelah diubah:</h3><ol>";
+sekolah.forEach(item => {
+    hasil += "<li>" + item + "</li>";
+});
+hasil += "</ol>";
+
+// Diubah lagi
+sekolah[0] = "Sekolah Idaman";
+sekolah[1] = "Sekolah Nyaman";
+
+hasil += "<h3>Setelah diubah lagi:</h3><ol>";
+sekolah.forEach(item => {
+    hasil += "<li>" + item + "</li>";
+});
+hasil += "</ol>";
+
+// Dihapus
+delete sekolah[2];
+delete sekolah[3];
+
+hasil += "<h3>Setelah dihapus:</h3><ol>";
+sekolah.forEach(item => {
+    hasil += "<li>" + item + "</li>";
+});
+hasil += "</ol>";
+
+// Tampilkan ke halaman
+document.getElementById("output").innerHTML = hasil;
+</script>
+
+</body>
+</html>
